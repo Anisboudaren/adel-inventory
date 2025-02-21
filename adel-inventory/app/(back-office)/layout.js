@@ -1,10 +1,9 @@
 import Header from '@/components/dashboard/Header'
 import Sidebar from '@/components/dashboard/Sidebar'
-import { Egg, Origami, Package } from 'lucide-react'
 import React, { Children } from 'react'
 export default function Layout({ children }) {
   return (
-    <div className='bg-gray-100 text-gray-950 flex p-4 '>
+    <div className='bg-gray-100 text-gray-950 flex p-4 z-0 '>
 {/* side bar */}
        <Sidebar />
 {/* main + header */}

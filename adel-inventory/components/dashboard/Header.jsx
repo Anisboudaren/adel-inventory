@@ -13,15 +13,19 @@ const Header = () => {
         </div>
 {/* left side   */}
        <div className='flex items-center gap-3'>
+        {/* plus button */}
         <div className="border-r border-gray-400 pr-2 bg">
-            <button className='bg-blue-500 text-white rounded-lg p-2'><Plus className='w-4 h-4'/> </button>
+            <button className='bg-violet-500 text-white rounded-lg p-2'><Plus className='w-4 h-4'/> </button>
         </div>
+        
+        {/* the setting and alert... */}
         <div className="border-r border-gray-400 pr-2 bg">
             <button className=' rounded-lg p-2'><Users2 className='w-6 h-6'/> </button>
             <button className=' rounded-lg p-2'><Bell className='w-6 h-6'/> </button>
             <button className=' rounded-lg p-2'><Settings className='w-6 h-6'/> </button>
         </div>
 
+        {/* last part */}
         <div className="flex gap-6">
            <button className='flex items-center gap-2'>El choukr 1 <ChevronDown className='w-4 h-4 mt-1' /> </button>
            <button><Image src="/profile.png" alt='user profile image' width={96} height={96} className="w-8 h-8 rounded-full" /></button>
