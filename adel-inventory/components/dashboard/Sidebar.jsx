@@ -6,7 +6,8 @@ import {
   PackageOpen, ShoppingCart, Origami, Settings, 
   ChevronsLeft, ChevronsRight, RotateCw , Receipt, BarChart, ShoppingBag, LogIn, LogOut, Target, BookOpen, RefreshCcw, 
   ChevronDown, Users, Building, DollarSign, Mail, Upload, CreditCard, File, MapPin, Percent, User,
-  FileText, ClipboardList, Truck
+  FileText, ClipboardList, Truck,
+  Settings2
 } from 'lucide-react';
 
 import { usePathname } from 'next/navigation';
@@ -33,8 +34,8 @@ const Sidebar = () => {
           <Origami className="w-8 h-8 text-violet-500 transition-all duration-300 shrink-0" />
           {!collapsed && <span className="text-[20px] font-semibold transition-all duration-300">EL Choukr ltd.</span>}
         </div>
-
-        <nav className="flex flex-col gap-3 mt-6 ">
+        
+        <nav className="flex flex-col gap-3 mt-6 max-h-[580px] overflow-y-auto pb-6 hide-scrollbar  ">
           {!collapsed && <span className="text-slate-400">Menu</span>}
           
           <SidebarLink href="/dashboard/home" text="Tableau de bord" isActive={pathname === "/dashboard/home"} Icon={LayoutDashboard} collapsed={collapsed} />
@@ -73,6 +74,7 @@ const Sidebar = () => {
               { href: "/dashboard/stocks/mise-a-jour-des-stocks", text: "Mise à jour des stocks", Icon: RefreshCcw },
             ]}
           />
+          <SidebarLink href="/dashboard/settings" text="Paramètres" isActive={pathname === "/dashboard/settings"} Icon={Settings2} collapsed={collapsed} />
 
         </nav>
 
