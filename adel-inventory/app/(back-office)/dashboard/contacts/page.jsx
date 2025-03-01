@@ -1,28 +1,267 @@
 "use client";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
-import { Hourglass } from "lucide-react";
+import { EllipsisVertical, Hourglass, Plus, Users } from "lucide-react";
 import React from "react";
 
+import { Button } from "@/components/ui/button"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+
 const Page = () => {
+ 
   const pathname = usePathname();
   const lastSegment = pathname.split("/").pop(); // Récupère uniquement la dernière partie du chemin
+  const contacts = [
+    {
+      id: "C1",
+      firstName: "Amine",
+      lastName: "Bouhjar",
+      phone: "+33 6 12 34 56 78",
+      email: "amine.b@example.com",
+      company: "Devlly Agency",
+      photo: null, // You can put a real image URL here if needed
+    },
+    {
+      id: "C2",
+      firstName: "Nadia",
+      lastName: "Bensalem",
+      phone: "+33 6 98 76 54 32",
+      email: "nadia.b@example.com",
+      company: "Webify France",
+      photo: null,
+    },
+    {
+      id: "C3",
+      firstName: "Karim",
+      lastName: "Ziani",
+      phone: "+33 6 11 22 33 44",
+      email: "karim.z@example.com",
+      company: "Tech Solutions",
+      photo: null,
+    },
+    {
+      id: "C4",
+      firstName: "Fatima",
+      lastName: "Ouali",
+      phone: "+33 6 55 44 33 22",
+      email: "fatima.o@example.com",
+      company: "Innovatech",
+      photo: null,
+    },
+    {
+      id: "C5",
+      firstName: "Yassine",
+      lastName: "Belkacem",
+      phone: "+33 6 77 88 99 00",
+      email: "yassine.b@example.com",
+      company: "Digital Wave",
+      photo: null,
+    },
+    {
+      id: "C6",
+      firstName: "Amine",
+      lastName: "Bouhjar",
+      phone: "+33 6 12 34 56 78",
+      email: "amine.b@example.com",
+      company: "Devlly Agency",
+      photo: null, // You can put a real image URL here if needed
+    },
+    {
+      id: "C7",
+      firstName: "Nadia",
+      lastName: "Bensalem",
+      phone: "+33 6 98 76 54 32",
+      email: "nadia.b@example.com",
+      company: "Webify France",
+      photo: null,
+    },
+    {
+      id: "C8",
+      firstName: "Karim",
+      lastName: "Ziani",
+      phone: "+33 6 11 22 33 44",
+      email: "karim.z@example.com",
+      company: "Tech Solutions",
+      photo: null,
+    },
+    {
+      id: "C9",
+      firstName: "Fatima",
+      lastName: "Ouali",
+      phone: "+33 6 55 44 33 22",
+      email: "fatima.o@example.com",
+      company: "Innovatech",
+      photo: null,
+    },
+    {
+      id: "D1",
+      firstName: "Yassine",
+      lastName: "Belkacem",
+      phone: "+33 6 77 88 99 00",
+      email: "yassine.b@example.com",
+      company: "Digital Wave",
+      photo: null,
+    },
+    {
+      id: "D2",
+      firstName: "Amine",
+      lastName: "Bouhjar",
+      phone: "+33 6 12 34 56 78",
+      email: "amine.b@example.com",
+      company: "Devlly Agency",
+      photo: null, // You can put a real image URL here if needed
+    },
+    {
+      id: "D3",
+      firstName: "Nadia",
+      lastName: "Bensalem",
+      phone: "+33 6 98 76 54 32",
+      email: "nadia.b@example.com",
+      company: "Webify France",
+      photo: null,
+    },
+    {
+      id: "D4",
+      firstName: "Karim",
+      lastName: "Ziani",
+      phone: "+33 6 11 22 33 44",
+      email: "karim.z@example.com",
+      company: "Tech Solutions",
+      photo: null,
+    },
+    {
+      id: "D5",
+      firstName: "Fatima",
+      lastName: "Ouali",
+      phone: "+33 6 55 44 33 22",
+      email: "fatima.o@example.com",
+      company: "Innovatech",
+      photo: null,
+    },
+    {
+      id: "D6",
+      firstName: "Yassine",
+      lastName: "Belkacem",
+      phone: "+33 6 77 88 99 00",
+      email: "yassine.b@example.com",
+      company: "Digital Wave",
+      photo: null,
+    },
+  ];
 
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const itemsPerPage = 8
+
+  // Calculate paginated data
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentContacts = contacts.slice(indexOfFirstItem, indexOfLastItem)
+
+  // Total pages
+  const totalPages = Math.ceil(contacts.length / itemsPerPage)
+  function handlePageChange(page) {
+    setCurrentPage(page)
+  }
+  
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100">
-      <div className="text-center opacity-70">
-        <Hourglass className="w-24 h-24 text-gray-400 opacity-50 mx-auto" />
-        <h2 className="text-3xl font-semibold text-gray-600 mt-4">
-          {lastSegment} arrive bientôt ⏳
-        </h2>
-        <p className="text-gray-500 mt-2 text-sm">Cette section sera bientôt disponible.</p>
-        <Link
-          href="/dashboard/home"
-          className="mt-6 inline-block px-5 py-2 bg-gray-600 text-white text-sm font-medium rounded-lg shadow hover:bg-gray-700 transition opacity-80"
-        >
-          Retour à l'accueil
-        </Link>
-      </div>
+    <div className="flex flex-col items-center justify-start rounded-2xl bg-white h-full w-full p-4 my-4 relative h-[calc(100vh-120px)] overflow-hidden pb-24 ">
+      {/* header */}
+      <div className="flex w-full justify-between items-center py-2 pb-4  border-b-2 ">
+         <h4 className="text-2xl font-semibold text-gray-600 "> Touts les Contacts</h4> 
+         <div className="flex gap-4">
+         <Button variant="outline" className="bg-primary text-secondary"><Plus /> Ajouter</Button>
+         <Button variant="outline" className="bg-slate-100 text-primary p-3 hover:bg-primary hover:text-slate-100 "><EllipsisVertical className="p-0 "/></Button>
+
+         </div>
+         
+        </div>
+
+      {/* body or table  */}
+      <div className="flex flex-col w-full items-start  h-full text-center opacity-70">
+      <Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[60px]">ID</TableHead>
+      <TableHead>Photo</TableHead>
+      <TableHead>Prénom</TableHead>
+      <TableHead>Nom</TableHead>
+      <TableHead>Téléphone</TableHead>
+      <TableHead>Email</TableHead>
+      <TableHead>Entreprise</TableHead>
+      <TableHead className="text-right">Actions</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {currentContacts.map((contact) => (
+      <TableRow key={contact.id}>
+        <TableCell className="font-medium">{contact.id}</TableCell>
+        <TableCell>
+          {contact.photo ? (
+            <img
+              src={contact.photo}
+              alt={`${contact.firstName} ${contact.lastName}`}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center">
+              <span className="text-gray-500 text-xs">Img</span>
+            </div>
+          )}
+        </TableCell>
+        <TableCell>{contact.firstName}</TableCell>
+        <TableCell>{contact.lastName}</TableCell>
+        <TableCell>{contact.phone}</TableCell>
+        <TableCell>{contact.email}</TableCell>
+        <TableCell>{contact.company}</TableCell>
+        <TableCell className="text-right">
+          <Button variant="outline" className="bg-slate-100 text-primary p-3 hover:bg-primary hover:text-slate-100">
+            <EllipsisVertical className="p-0" />
+          </Button>
+        </TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
+
+  <div className="flex justify-end space-x-2 mt-4 w-full">
+    <Button
+      variant="outline"
+      disabled={currentPage === 1}
+      onClick={() => handlePageChange(currentPage - 1)}
+    >
+      Précédent
+    </Button>
+    {[...Array(totalPages)].map((_, i) => (
+      <Button
+        key={i}
+        variant={currentPage === i + 1 ? "default" : "outline"}
+        onClick={() => handlePageChange(i + 1)}
+      >
+        {i + 1}
+      </Button>
+    ))}
+    <Button
+      variant="outline"
+      disabled={currentPage === totalPages}
+      onClick={() => handlePageChange(currentPage + 1)}
+    >
+      Suivant
+    </Button>
+  </div>
+
+
+
+    </div>
+
     </div>
   );
 };

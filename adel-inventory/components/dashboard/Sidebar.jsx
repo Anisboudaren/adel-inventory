@@ -7,7 +7,8 @@ import {
   ChevronsLeft, ChevronsRight, RotateCw , Receipt, BarChart, ShoppingBag, LogIn, LogOut, Target, BookOpen, RefreshCcw, 
   ChevronDown, Users, Building, DollarSign, Mail, Upload, CreditCard, File, MapPin, Percent, User,
   FileText, ClipboardList, Truck,
-  Settings2
+  Settings2,
+  Shell
 } from 'lucide-react';
 
 import { usePathname } from 'next/navigation';
@@ -31,7 +32,7 @@ const Sidebar = () => {
     >
       <div>
         <div className="flex items-center gap-2 py-2 transition-all duration-300">
-          <Origami className="w-8 h-8 text-violet-500 transition-all duration-300 shrink-0" />
+          <Shell className="w-8 h-8 text-violet-500 transition-all duration-300 shrink-0" />
           {!collapsed && <span className="text-[20px] font-semibold transition-all duration-300">EL Choukr ltd.</span>}
         </div>
         

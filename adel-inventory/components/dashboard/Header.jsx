@@ -8,7 +8,7 @@ const Header = () => {
     <div className=' flex h-12 w-full  text-slate-800 justify-between '>
 {/* right side header */}
         <div className='flex items-center gap-3'>
-            <History />
+           <History />
            <InputSearch />
         </div>
 {/* left side   */}
