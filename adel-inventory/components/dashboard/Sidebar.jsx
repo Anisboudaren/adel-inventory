@@ -13,12 +13,7 @@ import {
 
 import { usePathname } from 'next/navigation';
 import SidebarLink from './SidebarLink';
-import SidebarLinkCollapsed from './SidebarLinkCollapsed';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+
 import SidebarLinkWithArrow from './SidebarLinkWithArrow';
 
 const Sidebar = () => {
@@ -26,14 +21,20 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className={`relative h-[calc(100vh-30px)] ${collapsed ? 'w-20' : 'w-72'} 
+    <div className={`relative h-[calc(100vh-30px)] ${collapsed ? 'w-20' : 'w-72' } 
       bg-gray-950 text-slate-300 rounded-2xl p-4 transition-all duration-500 ease-in-out 
-      overflow-hidden z-20 flex flex-col justify-between`}
+      overflow-hidden z-20 flex flex-col justify-between`} 
+      onMouseEnter={() => setCollapsed(false)} 
+      onMouseLeave={() => setCollapsed(true)}
     >
       <div>
         <div className="flex items-center gap-2 py-2 transition-all duration-300">
           <Shell className="w-8 h-8 text-violet-500 transition-all duration-300 shrink-0" />
-          {!collapsed && <span className="text-[20px] font-semibold transition-all duration-300">EL Choukr ltd.</span>}
+          <span className={`text-[20px] font-semibold ${collapsed ? 'opacity-0 delay-0 duration-0' : 'opacity-100 delay-500 duration-500'}`}>
+    EL Choukr ltd.
+</span>
+
+
         </div>
         
         <nav className="flex flex-col gap-3 mt-6 max-h-[580px] overflow-y-auto pb-6 hide-scrollbar  ">
@@ -81,12 +82,6 @@ const Sidebar = () => {
 
       </div>
       
-      <button 
-        className="bg-gray-800 p-1.5 rounded-lg hover:bg-gray-700 transition duration-300 border border-gray-600 self-center mb-2"
-        onClick={() => setCollapsed(!collapsed)}
-      >
-        {collapsed ? <ChevronsRight className="w-4 h-4 text-white" /> : <ChevronsLeft className="w-4 h-4 text-white" />}
-      </button>
     </div>
   );
 };

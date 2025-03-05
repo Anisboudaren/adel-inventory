@@ -12,9 +12,12 @@ const SidebarLinkWithArrow = ({ title, icon: Icon, basePath, links, collapsed })
     <Collapsible>
       <div className="flex justify-between">
         <SidebarLink href={"#"} text={title} isActive={false} Icon={Icon} collapsed={collapsed} />
-        <CollapsibleTrigger >
-          <Plus className="w-4 h-4" />
-        </CollapsibleTrigger>
+        {!collapsed && (
+           <CollapsibleTrigger >
+           <Plus className="w-4 h-4" />
+         </CollapsibleTrigger>
+        )}
+       
       </div>
       <CollapsibleContent 
   className="overflow-hidden transition-all duration-300 ease-in-out data-[state=open]:h-auto data-[state=open]:opacity-100 h-0 opacity-0"
